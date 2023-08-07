@@ -1,0 +1,25 @@
+<header>
+    Page Header
+
+    <ul>
+
+        <% if(locals.user){ %>
+
+            <li><a href="http://localhost:8000/users/profile"><%= user.name %></a></li>
+            <li>
+                <a href="http://localhost:8000/users/logout">Log Out</a>
+            </li>
+
+            <% }else{ %>
+
+                <li>
+                    <a href="http://localhost:8000/users/login">Login</a>
+                </li>
+
+                <li>
+                    <a href="http://localhost:8000/users/register">Register</a>
+                </li>
+                <% } %>
+
+    </ul>
+</header>
