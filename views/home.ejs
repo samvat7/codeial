@@ -3,8 +3,23 @@
     
     <section class="feed-posts">
         <h4>Posts</h4>
-        <form action="" class="new-post-form" method="post">
-            <textarea name="content" cols="30" rows="3"></textarea>
-            <input type="submit" value="post">
+
+        <% if(locals.user){ %>
+        <form action="http://localhost:8000/posts/create" class="new-post-form" method="post">
+            <textarea name="content" cols="30" rows="3" placeholder="What's on your mind?"></textarea>
+            <input type="submit" value="Post">
         </form>
+        <% } %>
+
+        <div class="post-list">
+
+            <% for(let i=0;i<posts.length;i++) { %>
+                  <div class="user-post"> 
+                    <p><%= posts[i].user.name %></p>
+                    <p><%= posts[i].content %></p>
+                  </div> 
+                <% } %>
+        </div>
     </section>
+
+    
