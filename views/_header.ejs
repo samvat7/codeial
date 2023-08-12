@@ -1,25 +1,26 @@
 <header>
-    Page Header
+    <div id="codeial-logo"><span>Codeial</span></div>
 
-    <ul>
+    
+        <div id="links">
+            <% if(locals.user){ %>
 
-        <% if(locals.user){ %>
-
-            <li><a href="http://localhost:8000/users/profile"><%= user.name %></a></li>
-            <li>
-                <a href="http://localhost:8000/users/logout">Log Out</a>
-            </li>
-
-            <% }else{ %>
-
-                <li>
-                    <a href="http://localhost:8000/users/login">Login</a>
-                </li>
-
-                <li>
-                    <a href="http://localhost:8000/users/register">Register</a>
-                </li>
-                <% } %>
-
-    </ul>
+                <div><a href="http://localhost:8000/users/profile"><%= user.name %></a></div>
+                
+                
+                <div><a href="http://localhost:8000/users/logout"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a></div>
+                    
+                
+    
+                <% }else{ %>
+    
+    
+                        <div><a href="http://localhost:8000/users/login">Login</a></div>                    
+    
+                        <div><a href="http://localhost:8000/users/register">Register</a></div>
+                        
+                    <% } %>
+    
+        </div>
+    
 </header>

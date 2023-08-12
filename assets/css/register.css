@@ -1,24 +1,13 @@
-form{
+form {
+  display: flex;
+  flex-direction: column; }
 
-    display: flex;
+form input {
+  width: 10vw;
+  align-self: center;
+  margin: 0vh 0 2vh 0; }
 
-    flex-direction: column;
-}
-
-form input{
-
-    width: 10vw;
-
-    align-self: center;
-
-    margin: 0vh 0 2vh 0;
-}
-
-form button{
-
-    width: 10vw;
-
-    align-self: center;
-
-    margin: 2vh 0 2vh 0;
-}
+form button {
+  width: 10vw;
+  align-self: center;
+  margin: 2vh 0 2vh 0; }

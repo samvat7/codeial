@@ -1,0 +1,61 @@
+header {
+
+    background-color: rgb(35, 142, 224);
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: space-between;
+
+    #codeial-logo {
+
+            padding-top: 3vh;    
+        
+            span{
+            margin: 1vh 1vw 1vh 1vw;
+            font-family: 'Borel', cursive;
+            font-weight: bolder;
+            color: white;
+            font-size: 5vh;
+            }
+        }
+
+    #links {
+
+        display: flex;
+
+        a {
+            margin: 0 1vw 0 1vw;
+
+            text-decoration: none;
+
+            font-family: 'Roboto', sans-serif;
+
+            font-weight: 500;
+
+            color: white;
+
+            position: relative;
+
+            top: 37%;
+
+            &:hover {
+
+                color: gray;
+                i{
+                    color: gray;
+                }
+            }
+
+            i {
+
+                margin-right: 0;
+                color: white;
+                position: relative;
+            }
+        }
+
+
+    }
+}

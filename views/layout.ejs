@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/fe69022f97.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
     <%- style %>
 
@@ -16,7 +23,12 @@
     
     <%- include('_header'); %>
     
-    <%- body %>
+    <div class="flex-container">
+        <main id="layout-main">
+            <%- body %>
+        </main>  
+    </div>
+    
 
     <%- include('_footer'); %>
 

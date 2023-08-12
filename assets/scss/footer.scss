@@ -1,0 +1,26 @@
+footer {
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: space-between;
+
+    background-color: grey;
+
+    font-family: 'Roboto', sans-serif;
+
+    padding: 1vh 1vw 1vh 1vw;
+
+    #links {
+    
+        a {
+
+            text-decoration: none;
+
+            margin: 0 1vw 0 1vw;
+
+            color: black;
+        }
+    }
+}
