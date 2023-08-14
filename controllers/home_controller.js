@@ -6,7 +6,10 @@ module.exports.home = function(req, res){
 
     //populating the posts array's user attribute
 
-    Post.find({}).populate('user').then((post_list) => {
+    Post.find({})
+    .populate('user')
+    .populate({path: 'comment', populate: {path: 'user'}})
+    .then((post_list) => {
 
         console.log('Retrived posts list from DB');
 

@@ -5,6 +5,11 @@ html {
         display: flex;
         flex-direction: column;
 
+        h1{
+
+            font-family: 'Roboto', sans-serif;
+        }
+
         .flex-container {
             flex: 1; /* Allow the main content to take up remaining vertical space */
             display: flex;
@@ -21,6 +26,36 @@ html {
                 border: 1px solid black;
 
                 margin: 1vh 0 1vh 0;
+
+                .username{
+                    
+                    margin: 1vh 0 1vh 0;
+                    font-family: 'Roboto', sans-serif;
+                }
+
+                .post-content{
+
+                    margin: 0;
+                    font-family: 'Roboto Condensed', sans-serif;
+                    background-color: lightgray;
+                }
+
+                .post-comments{
+
+                    border: 1px solid gray;
+                    
+                    .comment-username{                 
+                        
+                        font-family: 'Roboto', sans-serif;
+                        margin: 0 0 0 1vw;
+                    }
+
+                    .comment-content{
+                        font-family: 'Roboto Condensed', sans-serif;
+                        margin: 0 0 0 1vw;
+                        background-color: lightgray;
+                    }
+                }
             }
         }
     }
