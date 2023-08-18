@@ -5,59 +5,133 @@ html {
         display: flex;
         flex-direction: column;
 
-        h1{
+        h1 {
 
             font-family: 'Roboto', sans-serif;
+            font-size: 1em;
         }
 
         .flex-container {
-            flex: 1; /* Allow the main content to take up remaining vertical space */
+            flex: 1;
+            /* Allow the main content to take up remaining vertical space */
             display: flex;
             flex-direction: column;
         }
-        
+
         #layout-main {
             flex: 1;
-            
+
             margin: 1vh 1vw 1vh 1vw;
 
-            .user-post{
+            .make-a-post{
+
+                display: flex;
+
+                flex-direction: column;
+
+                justify-content: space-around;
+
+                font-family: 'Roboto', sans-serif;
+
+                h2{
+
+                    margin: 0;
+
+                    font-size: 2.5vh;
+
+                    margin-left: 1vw;
+
+                    font-weight: 400;
+                }
+
+                textarea{
+
+                    width: 100%;
+
+                    height: 5vh;
+                }
+            }
+
+            .user-post {
 
                 border: 1px solid black;
 
-                margin: 1vh 0 1vh 0;
+                margin: 1vh 0 0vh 0;
 
-                .username{
-                    
-                    margin: 1vh 0 1vh 0;
-                    font-family: 'Roboto', sans-serif;
+                .post-header {
+
+                    display: flex;
+
+                    flex-direction: row;
+
+                    justify-content: space-between;
+
+                    .username {
+
+                        margin: 0vh 0 0vh 1vw;
+                        font-family: 'Roboto', sans-serif;
+                        font-size: 2.5vh;
+                    }
+
+                    a{
+                        align-self: center;
+                    }
+
                 }
 
-                .post-content{
+                .post-content {
 
                     margin: 0;
                     font-family: 'Roboto Condensed', sans-serif;
                     background-color: lightgray;
+                    }
                 }
 
-                .post-comments{
+                .post-delete-btn {
 
-                    border: 1px solid gray;
+                    color: black;
+                }
+
+                .comment-form {
+
+                    margin: 0 0 0 1vw;
+                }
+
+                .post-comments {
+
                     
-                    .comment-username{                 
+
+                    .comment-header{
                         
+                        margin: 0 0 0 1vw;
+
+                        a{
+
+                            color: black;
+
+                            align-self: center;
+                        }
+                    }
+
+                    .comment-username {
+
+                        display: flex;
+
+                        flex-direction: row;
+
+                        justify-content: space-between;
+
                         font-family: 'Roboto', sans-serif;
+
                         margin: 0 0 0 1vw;
                     }
 
-                    .comment-content{
+                    .comment-content {
                         font-family: 'Roboto Condensed', sans-serif;
-                        margin: 0 0 0 1vw;
                         background-color: lightgray;
+                        margin: 0;
                     }
-                }
             }
         }
     }
 }
-

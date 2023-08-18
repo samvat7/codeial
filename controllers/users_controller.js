@@ -3,12 +3,25 @@ const User = require('../models/user');
 
 module.exports.users = function(req,res){
 
-    console.log(req);
+    User.find({}).then((user_list)=>{
 
-    res.render('users', {
+       console.log('Successfuly retrieved user list.');
 
-        title: "Codeial Users"
+       res.locals.users = user_list;
+
+       return res.render('users', {
+
+        title: "Codeial | Users"
     });
+
+    }).catch((err)=>{
+
+        console.log('Error retrieving users list from DB', err);
+
+        return res.redirect('back');
+    });
+
+    console.log(req.body);
 }
 
 module.exports.profile = function(req, res) {

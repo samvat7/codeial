@@ -4,7 +4,8 @@ html body {
   display: flex;
   flex-direction: column; }
   html body h1 {
-    font-family: 'Roboto', sans-serif; }
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em; }
   html body .flex-container {
     flex: 1;
     /* Allow the main content to take up remaining vertical space */
@@ -13,22 +14,52 @@ html body {
   html body #layout-main {
     flex: 1;
     margin: 1vh 1vw 1vh 1vw; }
+    html body #layout-main .make-a-post {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      font-family: 'Roboto', sans-serif; }
+      html body #layout-main .make-a-post h2 {
+        margin: 0;
+        font-size: 2.5vh;
+        margin-left: 1vw;
+        font-weight: 400; }
+      html body #layout-main .make-a-post textarea {
+        width: 100%;
+        height: 5vh; }
     html body #layout-main .user-post {
       border: 1px solid black;
-      margin: 1vh 0 1vh 0; }
-      html body #layout-main .user-post .username {
-        margin: 1vh 0 1vh 0;
-        font-family: 'Roboto', sans-serif; }
+      margin: 1vh 0 0vh 0; }
+      html body #layout-main .user-post .post-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; }
+        html body #layout-main .user-post .post-header .username {
+          margin: 0vh 0 0vh 1vw;
+          font-family: 'Roboto', sans-serif;
+          font-size: 2.5vh; }
+        html body #layout-main .user-post .post-header a {
+          align-self: center; }
       html body #layout-main .user-post .post-content {
         margin: 0;
         font-family: 'Roboto Condensed', sans-serif;
         background-color: lightgray; }
-      html body #layout-main .user-post .post-comments {
-        border: 1px solid gray; }
-        html body #layout-main .user-post .post-comments .comment-username {
-          font-family: 'Roboto', sans-serif;
-          margin: 0 0 0 1vw; }
-        html body #layout-main .user-post .post-comments .comment-content {
-          font-family: 'Roboto Condensed', sans-serif;
-          margin: 0 0 0 1vw;
-          background-color: lightgray; }
+    html body #layout-main .post-delete-btn {
+      color: black; }
+    html body #layout-main .comment-form {
+      margin: 0 0 0 1vw; }
+    html body #layout-main .post-comments .comment-header {
+      margin: 0 0 0 1vw; }
+      html body #layout-main .post-comments .comment-header a {
+        color: black;
+        align-self: center; }
+    html body #layout-main .post-comments .comment-username {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-family: 'Roboto', sans-serif;
+      margin: 0 0 0 1vw; }
+    html body #layout-main .post-comments .comment-content {
+      font-family: 'Roboto Condensed', sans-serif;
+      background-color: lightgray;
+      margin: 0; }
