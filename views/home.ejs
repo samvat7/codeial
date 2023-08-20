@@ -1,46 +1,48 @@
-<h1>Codeial / <%= title %>
-</h1>
+<link rel="stylesheet" href="/css/home.css">
 
-<section class="feed-posts">
+<div class="home-container">
 
-  <div class="make-a-post">
+  <section class="feed-posts">
 
-    <h1>Posts</h1>
-
-    <% if(locals.user){ %>
-
-      <h2><%= locals.user.name %></h2>
-      <form action="http://localhost:8000/posts/create" class="new-post-form" method="post">
-        <textarea name="content" cols="30" rows="3" placeholder="What's on your mind?" required></textarea>
-        <input type="submit" value="Post">
-      </form>
-      <% } %>
-
-  </div>
-
-  <div class="post-list">
-
-    <% for(post of posts) { %>
-
-      <%- include('_post') -%>
-
-      <% } %>
-
-
-  </div>
-</section>
-
-<section id="user-friends">
+    <div class="make-a-post">
   
-  <h4>Friends</h4>
-
-  <% for(u of user_list){ %>
-
-    <p>
-
-      <a href="http://localhost:8000/users/profile/<%= u.id %>"><%= u.name %></a>
-
-    </p>
-
-    <% } %>
-</section>
+      <h1>Posts</h1>
+  
+      <% if(locals.user){ %>
+  
+        <h2><%= locals.user.name %></h2>
+        <form action="http://localhost:8000/posts/create" class="new-post-form" method="post">
+          <textarea name="content" cols="30" rows="3" placeholder="What's on your mind?" required></textarea>
+          <input type="submit" value="Post">
+        </form>
+        <% } %>
+  
+    </div>
+  
+    <div class="post-list">
+  
+      <% for(post of [...posts].reverse()) { %>
+  
+        <%- include('_post') -%>
+  
+        <% } %>
+  
+  
+    </div>
+  </section>
+  
+  <section id="user-friends">
+    
+    <h4>Friends</h4>
+  
+    <% for(u of user_list){ %>
+  
+      <p>
+  
+        <a href="http://localhost:8000/users/profile/<%= u.id %>"><%= u.name %></a>
+  
+      </p>
+  
+      <% } %>
+  </section>
+</div>

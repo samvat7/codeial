@@ -8,14 +8,18 @@
 
     <div class="update-form">
 
-        <form action="http://localhost:8000/users/update">
+        <form action="http://localhost:8000/users/update/<%= profile_user.id %>" method="post" id="form">
 
             <label for="name">Name:</label>
-            <input type="text" name="name" placeholder="Your name" value="<%= user.name %>" required>
+            <input type="text" name="name" placeholder="Your name" value="<%= profile_user.name %>" required>
 
             <label for="email">Email:</label>
-            <input type="text" name="email" placeholder="Your email" value="<%= user.email %>" required>
-            <input type="submit" name="Update" id="submit-btn">
+            <input type="text" name="email" placeholder="Your email" value="<%= profile_user.email %>" required>
+            <input type="submit" name="Update" value="Update" id="submit-btn">
+
+            <p>
+                Joined: <%= profile_user.createdAt %>
+            </p>
         </form>
     </div>
 

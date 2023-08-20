@@ -5,6 +5,10 @@
 
         <a href="http://localhost:8000/">Home</a>
         <a href="http://localhost:8000/users/">Users</a>
-        <a href="http://localhost:8000/users/profile/<%= user.id %>">Profile</a>
+        <% if(locals.user){ %>
+            <a href="http://localhost:8000/users/profile/<%= user.id %>">Profile</a>
+        <% }else{ %>
+            <a href="http://localhost:8000/users/login">Login</a>
+        <% } %>
     </div>
 </footer>

@@ -3,6 +3,8 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between; }
+  header a {
+    text-decoration: none; }
   header #codeial-logo {
     padding-top: 3vh; }
     header #codeial-logo span {

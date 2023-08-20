@@ -18,7 +18,7 @@ router.get('/login', passport.checkNotAuthenticated , usersController.login);
 
 router.post('/create', usersController.create);
 
-router.post('/update', passport.checkAuthentication, usersController.update);
+router.post('/update/:id', passport.checkAuthentication, usersController.update);
 
 //use passport as middleware to authenticate
 router.post('/create-session', passport.authenticate(

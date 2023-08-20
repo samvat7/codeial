@@ -1,71 +1,82 @@
 const passport = require('passport');
 const User = require('../models/user');
 
-module.exports.users = function(req,res){
+module.exports.users = async function (req, res) {
 
-    User.find({}).then((user_list)=>{
+    try {
 
-       console.log('Successfuly retrieved user list.');
+        let user_list = await User.find({});
 
-       res.locals.users = user_list;
+        console.log('Successfuly retrieved user list.');
 
-       return res.render('users', {
+        res.locals.users = user_list;
 
-        title: "Codeial | Users"
-    });
+        console.log(req.body);
 
-    }).catch((err)=>{
+        return res.render('users', {
 
-        console.log('Error retrieving users list from DB', err);
+            title: "Codeial | Users"
+        });
+    } catch (err) {
 
-        return res.redirect('back');
-    });
+        console.log('Error: ', err);
 
-    console.log(req.body);
+        return;
+    }
 }
 
-module.exports.profile = function(req, res) {
+module.exports.profile = async function (req, res) {
 
-        User.findById(req.params.id).then((user)=>{
+    try {
+        let user = await User.findById(req.params.id);
 
-            res.render('user_profile_logged', {
-                title: `${user.name}'s Profile`, // res.locals.user passed on by passport local
-                profile_user: user
-            });
-        }).catch((err)=>{
-
-            console.log('Error in finding the user ID in DB', err);
+        res.render('user_profile_logged', {
+            title: `${user.name}'s Profile`, // res.locals.user passed on by passport local
+            profile_user: user
         });
-        
+    } catch (err) {
+
+        console.log('Error: ', err);
+
+        return;
+    }
 };
 
-module.exports.update = function(req,res){
+module.exports.update = async function (req, res) {
 
-    if(req.user.id == req.params.id){
+    try {
 
-        User.findByIdAndUpdate(req.params.id, req.body).then(() => {
+        if (req.user.id == req.params.id) {
 
+            await User.findByIdAndUpdate(req.params.id, req.body);
             console.log('Successfuly updated user profile.');
-            return res.redirect('back');
-        }).catch( (err) => {
 
-            console.log('Error in updating the user in DB', err);
+
 
             return res.redirect('back');
-        });
-    }
-    else{
 
-        console.log('User not authorized to update this profile');
-    }
-}
+        }
+        else {
 
-module.exports.posts = function(req,res){
+            console.log('User not authorized to update this profile');
+
+            return res.status(401).send('Unauthorized');
+        }
+    } catch (err) {
+
+        console.log('Error: ', err);
+
+        return;
+    }
+
+};
+
+module.exports.posts = function (req, res) {
 
     res.end(`<h1>User's Posts</h1>`);
 }
 
-module.exports.register = function(req, res){
+module.exports.register = function (req, res) {
 
     return res.render('register', {
 
@@ -73,7 +84,7 @@ module.exports.register = function(req, res){
     });
 };
 
-module.exports.login = function(req, res){
+module.exports.login = function (req, res) {
 
     return res.render('login', {
         title: "Codeial | Log In"
@@ -81,35 +92,39 @@ module.exports.login = function(req, res){
 };
 
 //get the registeration data
-module.exports.create = function(req,res){
+module.exports.create = async function (req, res) {
 
-    console.log(req.body);
+    try {
+        
+        if (req.body.password != req.body.confirmpassword) {
 
-    if(req.body.password != req.body.confirmpassword){
+            return res.redirect('back');
+        }
 
-        return res.redirect('back');
-    }
+        let user = await User.findOne({ email: req.body.email });
 
-    User.findOne({ email: req.body.email }).then(function(user){
         if (!user) {
-            User.create(req.body).then(function(newUser) {
-                return res.redirect('http://localhost:8000/users/login');
-            }).catch(function(err) {
-                console.log('Error in creating user while signing up');
-            });
+            await User.create(req.body);
+
+            return res.redirect('http://localhost:8000/users/login');
+
         } else {
 
             console.log('User with this email already exists');
             res.redirect('back');
         }
-    }).catch(function(err) {
-        console.log('Error finding user in signing up.', err);
-    });
+
+    } catch (err) {
+
+        console.log('Error: ', err);
+
+        return;
+    }
 };
 
-module.exports.logout = function(req,res){
+module.exports.logout = function (req, res) {
 
-    req.logout(function(err) {
+    req.logout(function (err) {
         if (err) {
             console.log('Error logging out:', err);
             return res.redirect('/');
@@ -119,7 +134,7 @@ module.exports.logout = function(req,res){
     });
 };
 
-module.exports.createSession = function(req,res){
+module.exports.createSession = function (req, res) {
 
-    return res.redirect('http://localhost:8000/users/profile');
+    return res.redirect('http://localhost:8000');
 }

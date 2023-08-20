@@ -2,62 +2,49 @@ const Post = require('../models/post');
 
 const Comment = require('../models/comment');
 
-module.exports.create = function(req,res){  
+module.exports.create = async function (req, res) {
 
-    Post.create({
-        content: req.body.content,
-        user: req.user._id
-    }).then(function(post){
+    try {
+        await Post.create({
+            content: req.body.content,
+            user: req.user._id
+        });
 
         return res.redirect('back');
-    }).catch(function(err){
-
-        console.log('Error in creating a post'); 
-        return;
-    });
+    } catch (err) {
+        console.log('Error: ', err);
+    }
 };
 
-module.exports.destroy = function(req,res){
+module.exports.destroy = async function (req, res) {
 
-    Post.findById(req.params.id).then(function(post){
+    try {
 
-        console.log(req.params.id);
+        let post = await Post.findById(req.params.id);
 
-        if(post.user == req.user.id){
+        if (post.user == req.user.id) {
 
-            Post.deleteOne(post._id).then(() => {
+            await Post.deleteOne(post._id);
 
-                console.log('Post deleted.');
-            }).catch(function(err){
+            console.log('Post deleted.');
 
-                console.log('Error deleting post from DB', err);
+            await Comment.deleteMany({ post: req.params.id });
 
-                return res.redirect('back');
-            });
-
-            Comment.deleteMany({post:req.params.id}).then(() => {
-
-                console.log('Comments deleted.');
-            }).catch((err) => {
-
-                console.log('Error deleting the post', err);
-            });
+            console.log('Comments deleted.');
 
             return res.redirect('back');
         }
-        else{
+        else {
 
             console.log('User not authorized to delete this post');
 
             return res.redirect('back');
         }
+    } catch (err) {
 
+        console.log('Error: ', err);
 
-    }).catch(function(err){
-
-        console.log('Error finding post in DB', err);
-
-        return res.redirect('back');
-    });
+        return;
+    }
 };
 

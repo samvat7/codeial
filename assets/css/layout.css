@@ -14,6 +14,10 @@ html body {
   html body #layout-main {
     flex: 1;
     margin: 1vh 1vw 1vh 1vw; }
+    html body #layout-main .feed-posts {
+      margin-right: 1vw; }
+    html body #layout-main .user-friends {
+      max-width: 10%; }
     html body #layout-main .make-a-post {
       display: flex;
       flex-direction: column;
@@ -25,7 +29,7 @@ html body {
         margin-left: 1vw;
         font-weight: 400; }
       html body #layout-main .make-a-post textarea {
-        width: 100%;
+        width: 99%;
         height: 5vh; }
     html body #layout-main .user-post {
       border: 1px solid black;

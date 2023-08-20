@@ -23,6 +23,16 @@ html {
 
             margin: 1vh 1vw 1vh 1vw;
 
+            .feed-posts{
+
+                margin-right: 1vw;
+            }
+
+            .user-friends{
+
+                max-width: 10%;
+            }
+
             .make-a-post{
 
                 display: flex;
@@ -46,7 +56,7 @@ html {
 
                 textarea{
 
-                    width: 100%;
+                    width: 99%;
 
                     height: 5vh;
                 }
