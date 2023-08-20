@@ -1,5 +1,7 @@
 const Post = require('../models/post');
 
+const User = require('../models/user');
+
 module.exports.home = function(req, res){
 
     console.log(req.cookies);
@@ -13,10 +15,25 @@ module.exports.home = function(req, res){
 
         console.log('Retrived posts list from DB');
 
-        return res.render('home', {
-            title: "Codeial | Home",
-            posts: post_list
-        });
+        User.find({}).then((users) => {
+
+            for(u of users){
+
+                console.log(u);
+            }
+            
+
+            return res.render('home', {
+                title: "Codeial | Home",
+                posts: post_list,
+                user_list: users
+            });
+        }).catch((err) => {
+
+            console.log('Error in retrieving user list from DB', err);
+
+            return res.redirect('back');
+        })
     }).catch((err) => {
 
         console.log('Error retriving posts from DB', err);

@@ -8,7 +8,7 @@ const usersController = require('../controllers/users_controller');
 
 router.get('/', usersController.users);
 
-router.get('/profile', passport.checkAuthentication, usersController.profile); //mapping the profile route to the users controller
+router.get('/profile/:id', passport.checkAuthentication, usersController.profile); //mapping the profile route to the users controller
 
 router.get('/posts', usersController.posts);
 
@@ -17,6 +17,8 @@ router.get('/register', passport.checkNotAuthenticated , usersController.registe
 router.get('/login', passport.checkNotAuthenticated , usersController.login);
 
 router.post('/create', usersController.create);
+
+router.post('/update', passport.checkAuthentication, usersController.update);
 
 //use passport as middleware to authenticate
 router.post('/create-session', passport.authenticate(

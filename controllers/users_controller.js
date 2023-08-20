@@ -25,14 +25,40 @@ module.exports.users = function(req,res){
 }
 
 module.exports.profile = function(req, res) {
-    
-        console.log(res.locals.user);
 
-        res.render('user_profile_logged', {
-            title: `${res.locals.user.name}'s Profile`, // res.locals.user passed on by passport local
-            user: res.locals.user
+        User.findById(req.params.id).then((user)=>{
+
+            res.render('user_profile_logged', {
+                title: `${user.name}'s Profile`, // res.locals.user passed on by passport local
+                profile_user: user
+            });
+        }).catch((err)=>{
+
+            console.log('Error in finding the user ID in DB', err);
         });
+        
 };
+
+module.exports.update = function(req,res){
+
+    if(req.user.id == req.params.id){
+
+        User.findByIdAndUpdate(req.params.id, req.body).then(() => {
+
+            console.log('Successfuly updated user profile.');
+            return res.redirect('back');
+        }).catch( (err) => {
+
+            console.log('Error in updating the user in DB', err);
+
+            return res.redirect('back');
+        });
+    }
+    else{
+
+        console.log('User not authorized to update this profile');
+    }
+}
 
 module.exports.posts = function(req,res){
 

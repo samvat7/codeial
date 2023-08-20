@@ -1,12 +1,36 @@
-<title><%= user.name %>'s Profile</title>
+<title>
+    <%= title %>
+</title>
 
 <link rel="stylesheet" href="/css/user_profile.css">
 
-<h1>Welcome back, <%= user.name %></h1>
+<% if(user.id==profile_user.id){ %>
 
-<p>Email: <%= user.email %></p>
-<p>Password: <%= user.password %></p>
-<p>ID: <%= user.id %></p>
+    <div class="update-form">
 
-<a href="http://localhost:8000/users/logout">Logout</a>
+        <form action="http://localhost:8000/users/update">
 
+            <label for="name">Name:</label>
+            <input type="text" name="name" placeholder="Your name" value="<%= user.name %>" required>
+
+            <label for="email">Email:</label>
+            <input type="text" name="email" placeholder="Your email" value="<%= user.email %>" required>
+            <input type="submit" name="Update" id="submit-btn">
+        </form>
+    </div>
+
+
+    <% }else{ %>
+
+        <h1>
+            <%= profile_user.name %>'s Profile
+        </h1>
+
+        <p>Email: <%= profile_user.email %>
+        </p>
+        <p>ID: <%= profile_user.id %>
+        </p>
+        <p>Joined: <%= profile_user.createdAt %>
+        </p>
+
+        <% } %>
