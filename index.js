@@ -20,6 +20,10 @@ const MongoStore = require('connect-mongo');
 
 const sassMiddleware = require('node-sass-middleware');
 
+const flash = require('connect-flash');
+
+const customMware = require('./config/middleware');
+
 app.use(sassMiddleware({
 
     src: './assets/scss',
@@ -34,6 +38,8 @@ app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 
 app.use(express.static('./assets'));
+
+app.use('/uploads', express.static(__dirname+'/uploads'));
 
 app.use(expressLayouts); // has to be before routes 
 
@@ -72,6 +78,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+
+app.use(customMware.setFlash);
 
 //use express router
 

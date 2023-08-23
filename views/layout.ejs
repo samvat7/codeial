@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,27 +14,65 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+        integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"
+        integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <%- style %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        <%- style %>
 
-    <title>
+        <title>
 
-        <%= title %>
-    </title>
+            <%= title %>
+        </title>
 </head>
+
 <body>
-    
+
     <%- include('_header'); %>
-    
-    <div class="flex-container">
-        <main id="layout-main">
-            <%- body %>
-        </main>  
-    </div>
-    
 
-    <%- include('_footer'); %>
 
-    <%- script %>
+        <div class="flex-container">
+            <main id="layout-main">
+                <%- body %>
+            </main>
+        </div>
+
+
+        <%- include('_footer'); %>
+
+            <%- script %>
+
+                <script>
+
+                <% if (flash.success && flash.success.length > 0) { %>
+
+                        new Noty({
+                            theme: 'relax',
+                            text: "<%= flash.success %>",
+                            type: 'success',
+                            layout: 'topRight',
+                            timeout: 1500
+                        }).show();
+
+                <% } else if (flash.error && flash.error.length > 0) { %>
+
+                        new Noty({
+                            theme: 'relax',
+                            text: "<%= flash.error %>",
+                            type: 'error',
+                            layout: 'topRight',
+                            timeout: 1500
+                        }).show();
+
+                    <% } %>
+
+                </script>
+
 </body>
+
 </html>

@@ -1,27 +1,29 @@
-<div class="user-post">
-    <div class="post-header">
-      <p class="username">
+<div class="user-post" id="post-<%= post._id %>">
+  <div class="post-header">
+    <p class="username">
 
-        <%= post.user.name %>
-      </p>
-      <% if (locals.user && (locals.user.id==post.user.id)){ %>
-        <a href="http://localhost:8000/posts/destroy/<%= post._id %>" id="post-delete-<%= post._id%>"
-          class="post-delete-btn"><i class="fa-solid fa-trash"></i></a>
-        <% } %>
-    </div>
-
-    <p class="post-content">
-      <%= post.content %>
+      <%= post.user.name %>
     </p>
+    <% if (locals.user && (locals.user.id==post.user.id)){ %>
+      <a class="post-delete-btn" href="http://localhost:8000/posts/destroy/<%= post._id %>"
+        id="post-delete-<%= post._id%>">
+        <i class="fa-solid fa-trash"></i>
+      </a>
+      <% } %>
+  </div>
+
+  <p class="post-content">
+    <%= post.content %>
+  </p>
+
+  <div id="post-comments-<%= post._id %>" class="post-comments">
 
     <% for(c of post.comment){ %>
 
-      <div id="post-comments-<%= post._id %>" class="post-comments">
-
+      <div class="comment" id="comment-<%= c._id %>">
         <div class="comment-header">
           <p class="comment-username">
             <%= c.user.name %>
-
               <% if (locals.user){ %>
                 <% if((locals.user.id==c.user.id) || post.user.id==locals.user.id){ %>
                   <a href="http://localhost:8000/comments/destroy/<%= c._id %>" id="comment-delete-<%=c._id%>"
@@ -35,17 +37,19 @@
           </p>
 
         </div>
-
       </div>
+
       <% } %>
 
-        <% if(locals.user){ %>
-          <form action="http://localhost:8000/comments/create" class="comment-form" method="post">
-
-            <input type="text" name="content" placeholder="Type here to add comment..." required>
-            <input type="hidden" name="post" value="<%= post._id %>">
-            <input type="submit" value="Comment">
-          </form>
-          <% } %>
-
   </div>
+
+  <% if(locals.user){ %>
+    <form action="http://localhost:8000/comments/create" class="comment-form" method="post">
+
+      <input type="text" name="content" placeholder="Type here to add comment..." class="textarea" required>
+      <input type="hidden" name="post" value="<%= post._id %>">
+      <input type="submit" value="Comment">
+    </form>
+    <% } %>
+
+</div>

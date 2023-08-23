@@ -87,6 +87,11 @@ html {
                         align-self: center;
                     }
 
+                    .post-delete-btn i{
+
+                        color: black;
+                    }
+
                 }
 
                 .post-content {
@@ -94,12 +99,8 @@ html {
                     margin: 0;
                     font-family: 'Roboto Condensed', sans-serif;
                     background-color: lightgray;
+                    font-size: 2.5vh;
                     }
-                }
-
-                .post-delete-btn {
-
-                    color: black;
                 }
 
                 .comment-form {

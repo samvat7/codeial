@@ -1,5 +1,7 @@
 const passport = require('passport');
 const User = require('../models/user');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.users = async function (req, res) {
 
@@ -19,7 +21,7 @@ module.exports.users = async function (req, res) {
         });
     } catch (err) {
 
-        console.log('Error: ', err);
+        req.flash('error', err);
 
         return;
     }
@@ -36,7 +38,7 @@ module.exports.profile = async function (req, res) {
         });
     } catch (err) {
 
-        console.log('Error: ', err);
+        req.flash('error', err);
 
         return;
     }
@@ -44,29 +46,59 @@ module.exports.profile = async function (req, res) {
 
 module.exports.update = async function (req, res) {
 
-    try {
-
-        if (req.user.id == req.params.id) {
-
-            await User.findByIdAndUpdate(req.params.id, req.body);
-            console.log('Successfuly updated user profile.');
 
 
+    if (req.user.id == req.params.id) {
+        try {
+            let user = await User.findById(req.params.id);
+            
+            User.uploadedAvatar(req,res, function(err){
+
+                if(err){
+
+                    console.log('Error (Multer): ', err);
+                }
+
+                user.name = req.body.name;
+
+                user.email = req.body.email;
+
+                if (req.file) {
+                    // Check if the uploaded file has a valid type
+                    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                    if (allowedMimeTypes.includes(req.file.mimetype)) {
+                        if (user.avatar) {
+                            // Check if the avatar file exists in the directory before deleting
+                            if (fs.existsSync(path.join(__dirname, '..', user.avatar))) {
+                                fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                            }
+                        }
+                        // This is saving the path of the uploaded avatar into the avatar field of the user
+                        user.avatar = User.avatarPath + '/' + req.file.filename;
+                    } else {
+                        // Handle invalid file type
+                        console.log('Invalid file type');
+                    }
+                }
+
+                user.save();
+
+                return res.redirect('back');
+            });
+
+        } catch (err) {
+
+            req.flash('Error: ', err);
 
             return res.redirect('back');
-
         }
-        else {
 
-            console.log('User not authorized to update this profile');
+    }
+    else {
 
-            return res.status(401).send('Unauthorized');
-        }
-    } catch (err) {
+        req.flash('error', 'You are NOT Authorized for this operation');
 
-        console.log('Error: ', err);
-
-        return;
+        return res.status(401).send('Unauthorized');
     }
 
 };
@@ -95,9 +127,10 @@ module.exports.login = function (req, res) {
 module.exports.create = async function (req, res) {
 
     try {
-        
+
         if (req.body.password != req.body.confirmpassword) {
 
+            req.flash('err', `Passwords don't match`);
             return res.redirect('back');
         }
 
@@ -106,17 +139,20 @@ module.exports.create = async function (req, res) {
         if (!user) {
             await User.create(req.body);
 
+            req.flash('success', 'Registered successfuly');
+
             return res.redirect('http://localhost:8000/users/login');
 
         } else {
 
-            console.log('User with this email already exists');
+            req.flash('error', 'User with this email already exists');
+
             res.redirect('back');
         }
 
     } catch (err) {
 
-        console.log('Error: ', err);
+        req.flash('error', err);
 
         return;
     }
@@ -126,15 +162,20 @@ module.exports.logout = function (req, res) {
 
     req.logout(function (err) {
         if (err) {
-            console.log('Error logging out:', err);
+
+            req.flash('error', err);
             return res.redirect('/');
         }
+
+        req.flash('success', 'Logged out successfuly');
         // Redirect to the home page or any other page you want after successful logout
         return res.redirect('/');
     });
 };
 
 module.exports.createSession = function (req, res) {
+
+    req.flash('success', 'Logged in successfuly');
 
     return res.redirect('http://localhost:8000');
 }

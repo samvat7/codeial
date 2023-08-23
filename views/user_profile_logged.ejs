@@ -4,11 +4,17 @@
 
 <link rel="stylesheet" href="/css/user_profile.css">
 
+
+
+
 <% if(user.id==profile_user.id){ %>
+    
+    <img src="<%= user.avatar %>" alt="<%= user.name %>" width="100">
 
     <div class="update-form">
 
-        <form action="http://localhost:8000/users/update/<%= profile_user.id %>" method="post" id="form">
+        <form action="http://localhost:8000/users/update/<%= profile_user.id %>" enctype="multipart/form-data"
+            method="post" id="form">
 
             <label for="name">Name:</label>
             <input type="text" name="name" placeholder="Your name" value="<%= profile_user.name %>" required>
@@ -16,6 +22,10 @@
             <label for="email">Email:</label>
             <input type="text" name="email" placeholder="Your email" value="<%= profile_user.email %>" required>
             <input type="submit" name="Update" value="Update" id="submit-btn">
+
+            <input type="file" name="avatar" id="avatarInput" accept="image/*">
+            <img id="avatarPreview" src="#" alt="Avatar Preview" style="display: none; max-width: 100px; max-height: 100px;">
+
 
             <p>
                 Joined: <%= profile_user.createdAt %>
@@ -25,6 +35,8 @@
 
 
     <% }else{ %>
+
+        <img src="<%= profile_user.avatar %>" alt="<%= profile_user.name %>" width="100">
 
         <h1>
             <%= profile_user.name %>'s Profile
@@ -38,3 +50,5 @@
         </p>
 
         <% } %>
+
+        <script src="/js/user_profile_logged.js"></script>

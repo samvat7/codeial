@@ -44,12 +44,13 @@ html body {
           font-size: 2.5vh; }
         html body #layout-main .user-post .post-header a {
           align-self: center; }
+        html body #layout-main .user-post .post-header .post-delete-btn i {
+          color: black; }
       html body #layout-main .user-post .post-content {
         margin: 0;
         font-family: 'Roboto Condensed', sans-serif;
-        background-color: lightgray; }
-    html body #layout-main .post-delete-btn {
-      color: black; }
+        background-color: lightgray;
+        font-size: 2.5vh; }
     html body #layout-main .comment-form {
       margin: 0 0 0 1vw; }
     html body #layout-main .post-comments .comment-header {
