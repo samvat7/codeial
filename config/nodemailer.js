@@ -11,7 +11,7 @@ let transporter = nodemailer.createTransport({
     secure: false,
     auth: {
         user: 'samvat.t@gmail.com',
-        pass: 'oxbtyarxytrprsgc'
+        pass: 'GOOGLE_OATH_PASS'
     }
 });
 
