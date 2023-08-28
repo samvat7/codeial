@@ -15,15 +15,24 @@ header {
 
     #codeial-logo {
 
-            padding-top: 3vh;    
-        
+            padding-top: 3vh;
+            pointer-events: none;    
+
+            a{
+
+                pointer-events: none;
+            }
+
             span{
             margin: 1vh 1vw 1vh 1vw;
             font-family: 'Borel', cursive;
             font-weight: bolder;
             color: white;
             font-size: 5vh;
+            pointer-events: none;
             }
+
+            
         }
 
     #links {

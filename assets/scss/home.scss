@@ -1,6 +1,37 @@
-.home-container{
+.home-container {
 
     display: flex;
 
     flex-direction: row;
+
+    .users-list-user{
+
+        color: black;
+    }
+
+    .user-friends {
+
+        .friend {
+            display: flex;
+            flex-direction: row;
+
+            a{
+
+                color: black;
+            }
+        }
+    }
+
+    .user-list{
+
+        a{
+
+            color: black;
+
+            i{
+
+                color: black;
+            }
+        }
+    }
 }

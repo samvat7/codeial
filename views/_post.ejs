@@ -37,12 +37,32 @@
           </p>
 
         </div>
+        <div class="comment-footer">
+          <div class="comment-likes">
+            <% if(locals.user){ %>
+              <a href="http://localhost:8000/likes/toggle/?type=Comment&id=<%= c._id %>">
+
+                <% if(user_likes.includes(c._id)){ %>
+                  <i class="fa-solid fa-heart"></i>
+                  <% }else{ %>
+                    <i class="fa-regular fa-heart"></i>
+                    <% } %>
+
+              </a>
+              <% }else{ %>
+                <i class="fa-regular fa-heart"></i>
+                <% } %>
+                  <span>
+                    <%= c.likes.length %>
+                  </span>
+          </div>
+
+        </div>
       </div>
 
       <% } %>
 
   </div>
-
   <% if(locals.user){ %>
     <form action="http://localhost:8000/comments/create" class="comment-form" method="post">
 
@@ -52,4 +72,29 @@
     </form>
     <% } %>
 
+      <div class="post-footer">
+
+
+        <div class="post-likes">
+          <% if(locals.user){ %>
+            <a href="http://localhost:8000/likes/toggle/?type=Post&id=<%=post._id%>" class="post-like-btn">
+
+              <% if(user_likes.includes(post._id)){ %>
+                <i class="fa-solid fa-heart"></i>
+                <% }else{ %>
+                  <i class="fa-regular fa-heart"></i>
+                  <% } %>
+
+            </a>
+            <% }else{ %>
+              <i class="fa-regular fa-heart"></i>
+              <% } %>
+
+                <span>
+                  <%= post.likes.length %>
+                </span>
+        </div>
+
+
+      </div>
 </div>

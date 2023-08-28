@@ -28,4 +28,20 @@ router.post('/create-session', passport.authenticate(
 
 router.get('/logout', usersController.logout);
 
+router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email', ]}));
+
+router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'http://localhost:8000/users/login'}), usersController.createSession);
+
+router.get('/forgot_password', usersController.forgotPassword);
+
+router.post('/reset-password/sendEmail', usersController.sendEmail);
+
+router.get('/reset-password/confirmPassword', usersController.verifyToken);
+
+router.post('/update-password', usersController.updatePassword);
+
+router.post('/addFriend/:id', usersController.addFriend);
+
+router.post('/removeFriend/:id', usersController.removeFriend);
+
 module.exports = router;

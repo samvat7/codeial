@@ -5,46 +5,102 @@
   <section class="feed-posts">
 
     <div class="make-a-post">
-  
+
       <h1>Posts</h1>
-  
+
       <% if(locals.user){ %>
-  
-        <h2><%= locals.user.name %></h2>
+
+        <h2>
+          <%= locals.user.name %>
+        </h2>
         <form action="http://localhost:8000/posts/create" class="new-post-form" method="post">
           <textarea name="content" cols="30" rows="3" placeholder="What's on your mind?" required></textarea>
           <input type="submit" value="Post">
         </form>
         <% } %>
-  
-    </div>
-  
-    <div class="post-list">
-  
-      <% for(post of [...posts].reverse()) { %>
-  
-        <%- include('_post') -%>
-  
-        <% } %>
-  
-  
-    </div>
-  </section>
-  
-  <section id="user-friends">
-    
-    <h4>Friends</h4>
-  
-    <% for(u of user_list){ %>
-  
-      <p>
-  
-        <a href="http://localhost:8000/users/profile/<%= u.id %>"><%= u.name %></a>
-  
-      </p>
-  
-      <% } %>
-  </section>
-</div>
 
-<script src="/js/home_posts.js"></script>
+    </div>
+
+    <div class="post-list">
+
+      <% for(post of [...posts].reverse()) { %>
+
+        <%- include('_post') -%>
+
+          <% } %>
+
+
+    </div>
+  </section>
+
+  <section id="all-users">
+    <% if(locals.user){ %>
+      <div class="user-friends">
+
+        <h4>Friends</h4>
+
+        <% for(u of friends){ %>
+
+          <div id="friend-<%= u._id %>" class="friend">
+
+            <a href="http://localhost:8000/users/profile/<%= u._id %>">
+              <%= u.name %>
+            </a>
+
+            <a href="http://localhost:8000/users/removeFriend/<%= u._id %>" class="remove-friend-btn"><i
+                class="fa-solid fa-user-minus"></i></a>
+          </div>
+
+          <% } %>
+
+      </div>
+
+      <div class="user-list">
+
+        <h4>Users</h4>
+        <% for(u of user_list){ %>
+          <% if (!friends_id_list.includes(u.id)){ %>
+            <p>
+
+              <a href="http://localhost:8000/users/profile/<%= u.id %>">
+                <%= u.name %>
+              </a>
+
+              <% if(locals.user.id !=u.id){ %>
+                <a href="http://localhost:8000/users/addFriend/<%= u.id %>" class="add-friend-btn"><i
+                    class="fa-solid fa-plus"></i></a>
+            </p>
+            <% } %>
+              <% } %>
+
+                <% } %>
+      </div>
+      <% }else{ %>
+
+
+        <h4>Users</h4>
+        <% for(u of user_list){ %>
+          <p>
+
+            <a href="http://localhost:8000/users/profile/<%= u.id %>" class="users-list-user">
+              <%= u.name %>
+            </a>
+
+            <% if(locals.user){ %>
+
+
+              <a href="http://localhost:8000/users/addFriend/<%= u.id %>" class="add-friend-btn"
+                class="users-list-user"><i class="fa-solid fa-plus"></i></a>
+          </p>
+          <% } %>
+            <% } %>
+</div>
+<% } %>
+
+
+  </section>
+
+
+  </div>
+
+  <script src="/js/home_posts.js"></script>

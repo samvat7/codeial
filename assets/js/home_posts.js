@@ -9,6 +9,26 @@
         $('.comment-delete-btn').each(function () {
             deleteComment($(this));
         });
+
+        $('.post-likes a').each(function () {
+
+            likePost($(this));
+        });
+
+        $('.comment-likes a').each( function () {
+
+            likeComment($(this));
+        })
+
+        $('.add-friend-btn').each( function () {
+            
+            addFriend($(this));
+        })
+
+        $('.remove-friend-btn').each( function () {
+            
+            removeFriend($(this));
+        })
     });
 
 
@@ -31,6 +51,8 @@
                         $('.post-list').prepend(newPost);
 
                         deletePost($('.post-delete-btn', newPost));
+
+                        likePost($('.post-like-btn', newPost));
 
                         $('.new-post-form textarea').val('');
 
@@ -103,6 +125,8 @@
 
                     deleteComment($('.comment-delete-btn', newComment));
 
+                    likeComment($('.comment-like-btn', newComment));
+
                     $('.textarea').val('');  // Use .textarea within the form
 
                     new Noty({
@@ -148,7 +172,21 @@
                 <input type="hidden" name="post" value="${post._id}">
                 <input type="submit" value="Comment">
               </form>
-              
+        
+              <div class="post-footer">
+
+              <div class="post-likes">
+      
+                <a href="http://localhost:8000/likes/toggle/?type=Post&id=${post._id}" class="post-like-btn">
+                 
+      
+                    <i class="fa-regular fa-heart"></i>
+                    
+          </a>
+                <span>0</span>
+              </div>
+      
+            </div>
     
       </div>`)
     }
@@ -171,6 +209,16 @@
           </p>
 
         </div>
+        <div class="comment-footer">
+          <div class="comment-likes">
+            <a href="http://localhost:8000/likes/toggle/?type=Comment&id=${comment._id}" class="comment-like-btn">
+              
+                <i class="fa-regular fa-heart"></i>
+
+            </a>
+            <span>0</span>  
+          </div>
+        </div>
       </div>
         `);
     }
@@ -180,6 +228,7 @@
 
     let deletePost = () => {
         $('.post-list').on('click', '.post-delete-btn', function (e) {
+            
             e.preventDefault();
 
             let deleteLink = $(this);
@@ -232,6 +281,151 @@
         });
     }
 
+    let likePost = (post) => {
+
+
+
+        $(post).on('click', (e) => {
+
+            e.preventDefault();
+
+            $.ajax({
+
+                type: 'post',
+                url: post.prop('href'),
+                success: function (data) {
+
+                    if(data.data.deleted){
+
+                        $(`#post-${data.data.likeableID} .post-likes a i`).remove();
+
+                        $(`#post-${data.data.likeableID} .post-likes a`).append($(`<i class="fa-regular fa-heart"></i>`));
+                    }else{
+
+                        $(`#post-${data.data.likeableID} .post-likes a i`).remove();
+
+                        $(`#post-${data.data.likeableID} .post-likes a`).append($(`<i class="fa-solid fa-heart"></i>`));
+                    }
+
+                    console.log(data);
+
+                    let likeCount = post.siblings('span');
+
+                    likeCount.text(data.data.number_of_likes);
+
+                },
+                error: function (err) {
+
+                    console.log(err.responseText);
+                }
+            })
+        });
+    }
+
+    let likeComment = (comment) => {
+
+        $(comment).on('click', (e) => {
+
+            e.preventDefault();
+
+            $.ajax({
+
+                type: 'post',
+                url: comment.prop('href'),
+                success: function (data) {
+
+                    if(data.data.deleted){
+
+                        $(`#comment-${data.data.likeableID} .comment-likes a i`).remove();
+
+                        $(`#comment-${data.data.likeableID} .comment-likes a`).append($(`<i class="fa-regular fa-heart"></i>`));
+                    }else{
+
+                        $(`#comment-${data.data.likeableID} .comment-likes a i`).remove();
+
+                        $(`#comment-${data.data.likeableID} .comment-likes a`).append($(`<i class="fa-solid fa-heart"></i>`));
+                    }
+
+                    console.log(data);
+
+                    let likeCount = comment.siblings('span');
+
+                    likeCount.text(data.data.number_of_likes);
+
+                },
+                error: function (err) {
+
+                    console.log(err.responseText);
+                }
+            })
+        });
+    }
+
+let addFriend = (friend) => {
+
+    $(friend).on('click', (e) => {
+
+        e.preventDefault();
+
+        console.log(friend.prop('href'));
+
+        $.ajax({
+
+            type: 'post',
+            url: friend.prop('href'),
+            success: function (data) {
+                
+                console.log(data);
+
+                $(friend).find('i').remove();
+
+                new Noty({
+                    theme: 'relax',
+                    text: data.message,
+                    type: 'success',
+                    timeout: 1500 // Duration of the notification in milliseconds
+                }).show();
+            },
+            error: function (err) {
+                
+                console.log('Error in add friend script',err);
+            }
+        });
+    });
+}
+
+let removeFriend = (friend) => {
+
+    $(friend).on('click', (e) => {
+
+        e.preventDefault();
+
+        console.log(friend.prop('href'));
+
+        $.ajax({
+
+            type: 'post',
+            url: friend.prop('href'),
+            success: function (data) {
+                
+                console.log(data);
+
+                $(friend).find('i').remove();
+
+                new Noty({
+                    theme: 'relax',
+                    text: data.message,
+                    type: 'success',
+                    timeout: 1500 // Duration of the notification in milliseconds
+                }).show();
+            },
+            error: function (err) {
+                
+                console.log('Error in remove friend script',err);
+            }
+        });
+    });
+}
 
 
     createPost();

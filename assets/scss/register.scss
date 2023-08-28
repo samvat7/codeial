@@ -1,11 +1,11 @@
-form{
+form {
 
     display: flex;
 
     flex-direction: column;
 }
 
-form input{
+form input {
 
     width: 10vw;
 
@@ -14,11 +14,31 @@ form input{
     margin: 0vh 0 2vh 0;
 }
 
-form button{
+form button {
 
     width: 10vw;
 
     align-self: center;
 
     margin: 2vh 0 2vh 0;
+}
+
+p {
+
+    font-family: 'Roboto', sans-serif;
+
+    display: flex;
+
+    justify-content: space-around;
+
+    a {
+
+        display: inline-block;
+
+        text-decoration: none;
+
+        position: relative;
+
+        
+    }
 }

@@ -6,13 +6,17 @@ header {
   header a {
     text-decoration: none; }
   header #codeial-logo {
-    padding-top: 3vh; }
+    padding-top: 3vh;
+    pointer-events: none; }
+    header #codeial-logo a {
+      pointer-events: none; }
     header #codeial-logo span {
       margin: 1vh 1vw 1vh 1vw;
       font-family: 'Borel', cursive;
       font-weight: bolder;
       color: white;
-      font-size: 5vh; }
+      font-size: 5vh;
+      pointer-events: none; }
   header #links {
     display: flex; }
     header #links a {

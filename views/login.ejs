@@ -1,12 +1,25 @@
+<link rel="stylesheet" href="/css/login.css">
+
 <h1>Log In</h1>
 
 <form action="http://localhost:8000/users/create-session" method="post">
 
-    <label for="email">Email: </label>
-    <input type="text" name="email" id="email" placeholder="Email" required>
+    <div>
+        <label for="email">Email: </label>
+        <input type="text" name="email" id="email" placeholder="Email" required>
 
-    <label for="password">Password: </label>
-    <input type="password" name="password" id="password" placeholder="Password" requried>
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" placeholder="Password" requried>
+        <button type="submit">Login</button>
+    </div>
 
-    <button type="submit">Login</button>
+
 </form>
+
+<p>
+
+    <a href="http://localhost:8000/users/auth/google"><i class="fa-brands fa-google"></i> Google Login</a>
+
+</p>
+
+<p><a href="http://localhost:8000/users/forgot_password">Forgot Password</a></p>

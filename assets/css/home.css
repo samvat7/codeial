@@ -1,3 +1,14 @@
 .home-container {
   display: flex;
   flex-direction: row; }
+  .home-container .users-list-user {
+    color: black; }
+  .home-container .user-friends .friend {
+    display: flex;
+    flex-direction: row; }
+    .home-container .user-friends .friend a {
+      color: black; }
+  .home-container .user-list a {
+    color: black; }
+    .home-container .user-list a i {
+      color: black; }

@@ -28,7 +28,17 @@ const userSchema = new mongoose.Schema({
     avatar: {
 
         type: String
-    }
+    },
+    friendships: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
+    ]
 }, {
 
     timestamps: true
@@ -36,17 +46,17 @@ const userSchema = new mongoose.Schema({
 
 let storage = multer.diskStorage({
 
-    destination: function(req, file, cb){
+    destination: function (req, file, cb) {
 
         cb(null, path.join(__dirname, '..', AVATAR_PATH));
     },
-    filename: function(req,file,cb){
+    filename: function (req, file, cb) {
 
-        cb(null, file.fieldname+ '-' + Date.now());
+        cb(null, file.fieldname + '-' + Date.now());
     }
 });
 
-userSchema.statics.uploadedAvatar = multer({storage: storage}).single('avatar');
+userSchema.statics.uploadedAvatar = multer({ storage: storage }).single('avatar');
 userSchema.statics.avatarPath = AVATAR_PATH;
 
 const User = mongoose.model('User', userSchema);
