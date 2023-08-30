@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="<%= assetPath('css/layout.css') %>">
+    <link rel="stylesheet" href="<%= assetPath('css/header.css') %>">
+    <link rel="stylesheet" href="<%= assetPath('css/footer.css') %>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/fe69022f97.js" crossorigin="anonymous"></script>
@@ -47,12 +47,12 @@
 
         <div class="chat-window">
             <div class="chat-messages">
-                <div class="temp1"><div class="message user-message">Hey! How are you?</div></div>
-                <div class="temp2"><div class="message friend-message">Hi! I'm good, thanks for asking.</div></div>
+                <div class="user-message"><div class="message">Hey! How are you?</div></div>
+                <div class="friend-message"><div class="message">Hi! I'm good, thanks for asking.</div></div>
             </div>
             <div class="chat-input">
-                <input type="text" placeholder="Type your message...">
-                <button>Send</button>
+                <input type="text" placeholder="Type your message..." id="chat-message-input">
+                <button id="send-message">Send</button>
             </div>
         </div>
         

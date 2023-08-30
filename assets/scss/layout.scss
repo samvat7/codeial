@@ -177,62 +177,43 @@ html {
             background-color: #fff;
             border: 1px solid #ccc;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: none;
+            display: flex;
             flex-direction: column;
             justify-content: space-between;
-
+        
             .chat-messages {
                 max-height: 300px;
                 overflow-y: auto;
                 padding: 10px;
                 display: flex;
                 flex-direction: column;
-
-                .temp1{
-
-                    flex-direction: row;
-                    width: 100%;
-                    display: flex;
-                    justify-content: right;
-
-                    .message {
-                        padding: 8px;
-                        margin-bottom: 5px;
-                        border-radius: 5px;
-                    }
-                    
-                    .user-message {
         
-                        background-color: #007bff;
-                        color: #fff;
-                        width: fit-content;
-                    }
+                .message {
+                    padding: 8px;
+                    margin-bottom: 5px;
+                    border-radius: 5px;
+                    width: fit-content;
+                    
                 }
-
-                .temp2{
-
-                    flex-direction: row;
-                    width: 100%;
-                    display: flex;
-                    justify-content: left;
-
-                    .message {
-                        padding: 8px;
-                        margin-bottom: 5px;
-                        border-radius: 5px;
-                    }
-
-                    .friend-message {
-                        background-color: #f0f0f0;
-                        color: #333;
-                        width: fit-content;
-                        justify-content: left;
-                    }
+                
+                .user-message {
+                    background-color: #007bff;
+                    color: #fff;
+                    align-self: flex-end; // Align to the right
+                    border-radius: 12px;
+                    margin: 0 0 1vh 0;
                 }
-
-
+        
+                .friend-message {
+                    background-color: #f0f0f0;
+                    color: #333;
+                    align-self: flex-start; // Align to the left
+                    border-radius: 12px;
+                    margin: 0 0 1vh 0;
+                }
             }
         }
+        
             
         .chat-input {
             display: flex;

@@ -6,12 +6,17 @@ const crypto = require('crypto');
 
 const User = require('../models/user');
 
+const env = require('./environment')
+
+/*
+TODO: make a new Google OAuth Credential on console.developers.google.com 
+*/
 
 passport.use(new googleStrategy({
 
-    clientID: "724587597516-aa28tjl534k9kfiemd0rpthvs1grkrnj.apps.googleusercontent.com",
-    clientSecret: "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",
-    callbackURL: "http://localhost:8000/users/auth/google/callback"
+    clientID: env.google_client_id,
+    clientSecret: env.google_client_secret,
+    callbackURL: env.google_callback_url
 }, function (accessToken, refreshToken, profile, done) {
 
     User.findOne({ email: profile.emails[0].value }).then((user) => {

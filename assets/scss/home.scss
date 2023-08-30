@@ -35,3 +35,12 @@
         }
     }
 }
+
+#all-users {
+    flex: 0 0 20%;  /* take up 20% of the space */
+    max-width: 20%;
+}
+
+.feed-posts {
+    flex: 1;  /* take up the remaining space */
+}

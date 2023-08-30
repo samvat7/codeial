@@ -87,7 +87,7 @@ html body {
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-between; }
     html body .chat-window .chat-messages {
@@ -96,33 +96,23 @@ html body {
       padding: 10px;
       display: flex;
       flex-direction: column; }
-      html body .chat-window .chat-messages .temp1 {
-        flex-direction: row;
-        width: 100%;
-        display: flex;
-        justify-content: right; }
-        html body .chat-window .chat-messages .temp1 .message {
-          padding: 8px;
-          margin-bottom: 5px;
-          border-radius: 5px; }
-        html body .chat-window .chat-messages .temp1 .user-message {
-          background-color: #007bff;
-          color: #fff;
-          width: fit-content; }
-      html body .chat-window .chat-messages .temp2 {
-        flex-direction: row;
-        width: 100%;
-        display: flex;
-        justify-content: left; }
-        html body .chat-window .chat-messages .temp2 .message {
-          padding: 8px;
-          margin-bottom: 5px;
-          border-radius: 5px; }
-        html body .chat-window .chat-messages .temp2 .friend-message {
-          background-color: #f0f0f0;
-          color: #333;
-          width: fit-content;
-          justify-content: left; }
+      html body .chat-window .chat-messages .message {
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        width: fit-content; }
+      html body .chat-window .chat-messages .user-message {
+        background-color: #007bff;
+        color: #fff;
+        align-self: flex-end;
+        border-radius: 12px;
+        margin: 0 0 1vh 0; }
+      html body .chat-window .chat-messages .friend-message {
+        background-color: #f0f0f0;
+        color: #333;
+        align-self: flex-start;
+        border-radius: 12px;
+        margin: 0 0 1vh 0; }
   html body .chat-input {
     display: flex;
     align-items: center;

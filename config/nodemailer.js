@@ -1,19 +1,14 @@
 const nodemailer = require('nodemailer');
 const ejs = require('ejs');
 const path = require('path'); 
+const env = require('./environment');
 
 
-let transporter = nodemailer.createTransport({
+/*
+TODO: make new app password with any other email than "samvat.t@gmail.com"
+*/
 
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-        user: 'samvat.t@gmail.com',
-        pass: 'oxbtyarxytrprsgc'
-    }
-});
+let transporter = nodemailer.createTransport(env.smtp);
 
 let renderTemplate = (data, relativePath) => {
 
