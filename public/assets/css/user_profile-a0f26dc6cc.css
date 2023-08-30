@@ -1,0 +1,7 @@
+body {
+  background-color: lightblue; }
+  body form {
+    display: flex;
+    flex-direction: column; }
+    body form input {
+      width: fit-content; }
