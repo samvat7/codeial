@@ -145,7 +145,7 @@ module.exports.create = async function (req, res) {
 
             req.flash('success', 'Registered successfuly');
 
-            return res.redirect('http://localhost:8000/users/login');
+            return res.redirect('/users/login');
 
         } else {
 
@@ -181,7 +181,7 @@ module.exports.createSession = function (req, res) {
 
     req.flash('success', 'Logged in successfuly');
 
-    return res.redirect('http://localhost:8000');
+    return res.redirect('/');
 }
 
 module.exports.forgotPassword = function (req, res) {
@@ -244,7 +244,7 @@ module.exports.verifyToken = async function (req,res) {
     else{
 
         req.flash('error', 'Reset token is invalid');
-        return res.redirect('http://localhost:8000/');
+        return res.redirect('/');
     }
 }
 
@@ -281,7 +281,7 @@ module.exports.updatePassword = async function (req, res) {
 
         req.flash('success', 'Password updated successfully');
 
-        return res.redirect('http://localhost:8000/users/login');
+        return res.redirect('/users/login');
     } catch (err) {
         console.error('Error in updating password:', err);
         req.flash('error', 'Error updating password');

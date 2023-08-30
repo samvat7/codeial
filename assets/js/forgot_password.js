@@ -8,7 +8,7 @@
 
             $.ajax({
                 type: 'post',
-                url: 'http://localhost:8000/users/reset-password/sendEmail',
+                url: '/users/reset-password/sendEmail',
                 data: $('form').serialize(),
                 success: function (data) {
 

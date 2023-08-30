@@ -42,7 +42,7 @@
 
                 $.ajax({
                     type: 'post',
-                    url: 'http://localhost:8000/posts/create',
+                    url: '/posts/create',
                     data: newPostForm.serialize(),
                     success: function (data) {
 
@@ -78,7 +78,7 @@
 
             $.ajax({
                 type: 'post',
-                url: 'http://localhost:8000/posts/create',
+                url: '/posts/create',
                 data: newPostForm.serialize(),
                 success: function (data) {
 
@@ -115,7 +115,7 @@
 
             $.ajax({
                 type: 'post',
-                url: 'http://localhost:8000/comments/create',
+                url: '/comments/create',
                 data: commentForm.serialize(),
                 success: function (data) {
 
@@ -154,7 +154,7 @@
              ${post.user.name}
           </p>
           
-            <a class="post-delete-btn" href="http://localhost:8000/posts/destroy/${post._id}" id="post-delete-${post._id}"
+            <a class="post-delete-btn" href="/posts/destroy/${post._id}" id="post-delete-${post._id}"
               ><i class="fa-solid fa-trash"></i></a>
            
         </div>
@@ -166,7 +166,7 @@
         <div id="post-comments-${post._id}" class="post-comments">
         </div>
             
-              <form action="http://localhost:8000/comments/create" class="comment-form" method="post">
+              <form action="/comments/create" class="comment-form" method="post">
     
                 <input type="text" name="content" placeholder="Type here to add comment..." class="textarea" required>
                 <input type="hidden" name="post" value="${post._id}">
@@ -177,7 +177,7 @@
 
               <div class="post-likes">
       
-                <a href="http://localhost:8000/likes/toggle/?type=Post&id=${post._id}" class="post-like-btn">
+                <a href="/likes/toggle/?type=Post&id=${post._id}" class="post-like-btn">
                  
       
                     <i class="fa-regular fa-heart"></i>
@@ -200,7 +200,7 @@
         <div class="comment-header">
           <p class="comment-username">
             ${comment.user.name}     
-                  <a href="http://localhost:8000/comments/destroy/${comment._id}" id="comment-delete-${comment._id}"
+                  <a href="/comments/destroy/${comment._id}" id="comment-delete-${comment._id}"
                     class="comment-delete-btn"><i class="fa-solid fa-trash"></i></a>
           </p>
 
@@ -211,7 +211,7 @@
         </div>
         <div class="comment-footer">
           <div class="comment-likes">
-            <a href="http://localhost:8000/likes/toggle/?type=Comment&id=${comment._id}" class="comment-like-btn">
+            <a href="/likes/toggle/?type=Comment&id=${comment._id}" class="comment-like-btn">
               
                 <i class="fa-regular fa-heart"></i>
 

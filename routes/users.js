@@ -23,14 +23,14 @@ router.post('/update/:id', passport.checkAuthentication, usersController.update)
 //use passport as middleware to authenticate
 router.post('/create-session', passport.authenticate(
     'local',
-    {failureRedirect: 'http://localhost:8000/users/login'}
+    {failureRedirect: '/users/login'}
 ), usersController.createSession);
 
 router.get('/logout', usersController.logout);
 
 router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email', ]}));
 
-router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'http://localhost:8000/users/login'}), usersController.createSession);
+router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/users/login'}), usersController.createSession);
 
 router.get('/forgot_password', usersController.forgotPassword);
 

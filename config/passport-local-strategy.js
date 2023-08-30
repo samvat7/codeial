@@ -68,7 +68,7 @@ passport.checkAuthentication = function (req, res, next) {
         return next();
     }
 
-    return res.redirect('http://localhost:8000/users/login');
+    return res.redirect('/users/login');
 }
 
 passport.checkNotAuthenticated = function (req, res, next) {
@@ -78,7 +78,7 @@ passport.checkNotAuthenticated = function (req, res, next) {
         return next();
     }
 
-    return res.redirect('http://localhost:8000/');
+    return res.redirect('/');
 }
 
 passport.setAuthenticatedUser = function (req, res, next) {
