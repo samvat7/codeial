@@ -13,7 +13,7 @@
         <h2>
           <%= locals.user.name %>
         </h2>
-        <form action="http://localhost:8000/posts/create" class="new-post-form" method="post">
+        <form action="/posts/create" class="new-post-form" method="post">
           <textarea name="content" cols="30" rows="3" placeholder="What's on your mind?" required></textarea>
           <input type="submit" value="Post">
         </form>
@@ -43,11 +43,11 @@
 
           <div id="friend-<%= u._id %>" class="friend">
 
-            <a href="http://localhost:8000/users/profile/<%= u._id %>">
+            <a href="/users/profile/<%= u._id %>">
               <%= u.name %>
             </a>
 
-            <a href="http://localhost:8000/users/removeFriend/<%= u._id %>" class="remove-friend-btn"><i
+            <a href="/users/removeFriend/<%= u._id %>" class="remove-friend-btn"><i
                 class="fa-solid fa-user-minus"></i></a>
           </div>
 
@@ -62,12 +62,12 @@
           <% if (!friends_id_list.includes(u.id)){ %>
             <p>
 
-              <a href="http://localhost:8000/users/profile/<%= u.id %>">
+              <a href="/users/profile/<%= u.id %>">
                 <%= u.name %>
               </a>
 
               <% if(locals.user.id !=u.id){ %>
-                <a href="http://localhost:8000/users/addFriend/<%= u.id %>" class="add-friend-btn"><i
+                <a href="/users/addFriend/<%= u.id %>" class="add-friend-btn"><i
                     class="fa-solid fa-plus"></i></a>
             </p>
             <% } %>
@@ -82,14 +82,14 @@
         <% for(u of user_list){ %>
           <p>
 
-            <a href="http://localhost:8000/users/profile/<%= u.id %>" class="users-list-user">
+            <a href="/users/profile/<%= u.id %>" class="users-list-user">
               <%= u.name %>
             </a>
 
             <% if(locals.user){ %>
 
 
-              <a href="http://localhost:8000/users/addFriend/<%= u.id %>" class="add-friend-btn"
+              <a href="/users/addFriend/<%= u.id %>" class="add-friend-btn"
                 class="users-list-user"><i class="fa-solid fa-plus"></i></a>
           </p>
           <% } %>

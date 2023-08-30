@@ -1,23 +1,23 @@
 <header>
-    <a href="http://localhost:8000/"><div id="codeial-logo"><span>Codeial</span></div></a> 
+    <a href="/"><div id="codeial-logo"><span>Codeial</span></div></a> 
 
     
         <div id="links">
             <% if(locals.user){ %>
 
-                <div><a href="http://localhost:8000/users/profile/<%= user.id %>"><%= user.name %></a></div>
+                <div><a href="/users/profile/<%= user.id %>"><%= user.name %></a></div>
                 
                 
-                <div><a href="http://localhost:8000/users/logout"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a></div>
+                <div><a href="/users/logout"><i class="fa-solid fa-right-from-bracket"></i>Log Out</a></div>
                     
                 
     
                 <% }else{ %>
     
     
-                        <div><a href="http://localhost:8000/users/login">Login</a></div>                    
+                        <div><a href="/users/login">Login</a></div>                    
     
-                        <div><a href="http://localhost:8000/users/register">Register</a></div>
+                        <div><a href="/users/register">Register</a></div>
                         
                     <% } %>
     
