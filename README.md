@@ -1,4 +1,3 @@
 # codeial
-
-![image](https://github.com/samvat7/codeial/assets/108258653/4f8e7c5e-8e96-45fa-9639-d7130b18179b)
-
+<a href="http://16.171.138.189">Codeial</a>
+![image](https://github.com/samvat7/codeial/assets/108258653/c10b7d77-b7ef-4c2c-86d6-d6172d4125a7)
