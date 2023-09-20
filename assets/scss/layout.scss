@@ -170,10 +170,10 @@ html {
 
         .chat-window {
             position: fixed;
-            bottom: 20px;
+            bottom: 80px;
             right: 20px;
             width: 300px;
-            height: 40vh;
+            height: 0vh;
             background-color: #fff;
             border: 1px solid #ccc;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -210,6 +210,29 @@ html {
                     align-self: flex-start; // Align to the left
                     border-radius: 12px;
                     margin: 0 0 1vh 0;
+                }
+            }
+
+            .chat-header {
+                background-color: #007bff;
+                color: #fff;
+                padding: 8px;
+                text-align: center;
+                cursor: pointer;
+            }
+        
+            .chat-body {
+                .chat-body-content {
+                    display: none; /* Default state to hidden */
+                }
+        
+                &.minimized .chat-body-content {
+                    display: none;
+                }
+        
+                &:not(.minimized) .chat-body-content {
+                    display: flex;
+                    flex-direction: column;
                 }
             }
         }
