@@ -23,7 +23,7 @@ const customMware = require('./config/middleware');
 const cors = require('cors');
 
 app.use(cors({
-    origin: 'http://16.171.138.189:8000/',  // replace with your application's origin
+    origin: 'http://16.171.138.189/',  // replace with your application's origin
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   }));
