@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
+<link rel="stylesheet" href="/<%= assetPath('css/home.css') %>">
 
 <div class="home-container">
 
@@ -28,7 +28,6 @@
         <%- include('_post') -%>
 
           <% } %>
-
 
     </div>
   </section>
@@ -103,12 +102,12 @@
 
   </div>
 
-  <script src="<%= assetPath('js/home_posts.js') %>"></script>
+  <script src="/<%= assetPath('js/home_posts.js') %>"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"
     integrity="sha512-zoJXRvW2gC8Z0Xo3lBbao5+AS3g6YWr5ztKqaicua11xHo+AvE1b0lT9ODgrHTmNUxeCw0Ry4BGRYZfXu70weg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="<%= assetPath('js/chat_engine.js') %>"></script>
+  <script src="/<%= assetPath('js/chat_engine.js') %>"></script>
 
   <% if(locals.user){ %>
     <script>

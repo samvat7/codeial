@@ -1,0 +1,1 @@
+function toggleChatWindow(){const t=document.querySelector(".chat-window"),e=document.querySelector(".chat-body");e.classList.contains("minimized")?(e.classList.remove("minimized"),t.style.height="40vh",t.style.bottom="20px"):(e.classList.add("minimized"),t.style.height="0vh",t.style.bottom="80px")}

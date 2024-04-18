@@ -5,6 +5,10 @@ const env = require('../../../config/environment');
 module.exports.createSession = async function (req, res) {
 
         try {
+            console.log(req)
+            console.log("Email: ", req.body.email);
+            console.log("Password : ", req.body.password);
+
             let user = await User.findOne({email: req.body.email});
 
             if(!user || user.password != req.body.password){

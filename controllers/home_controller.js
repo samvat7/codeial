@@ -7,7 +7,6 @@ const Friendship = require('../models/friendships');
 const env = require('../config/environment');
 
 
-
 module.exports.home = async function (req, res) {
 
     try {
@@ -17,7 +16,7 @@ module.exports.home = async function (req, res) {
             .populate('user')
             .populate({ path: 'comment', populate: { path: 'user' } })
 
-        let users = await User.find({})
+        let users = await User.find({});
         
 
         //console.log(users);

@@ -7,10 +7,10 @@
   "css/register.css": "css/register-b813ef9364.css",
   "css/reset_password.css": "css/reset_password-0a1f121ea6.css",
   "css/user_profile.css": "css/user_profile-a0f26dc6cc.css",
-  "js/chat_engine.js": "js/chat_engine-126d88f7b6.js",
+  "js/chat_engine.js": "js/chat_engine-fce61a5863.js",
   "js/forgot_password.js": "js/forgot_password-52ab5fb856.js",
   "js/home_posts.js": "js/home_posts-595c834c5a.js",
+  "js/layout.js": "js/layout-53cff9bd58.js",
   "js/reset_password.js": "js/reset_password-7c4017df4f.js",
   "js/user_profile_logged.js": "js/user_profile_logged-bbe12506b8.js"
 }
-

@@ -1,1 +1,0 @@
-$(document).ready((()=>{$("#forgot-password-form").on("submit",(e=>{e.preventDefault(),$.ajax({type:"post",url:"http://localhost:8000/users/reset-password/sendEmail",data:$("form").serialize(),success:function(e){console.log(e),new Noty({theme:"relax",text:"Verification Email Sent",type:"success",timeout:1500}).show()},error:function(e){console.log(e.responseText)}})}))}));

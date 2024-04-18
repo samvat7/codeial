@@ -1,7 +1,7 @@
 require('dotenv').config();
 
-const express = require('express');
 const env = require('./config/environment');
+const express = require('express');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const expressLayouts = require('express-ejs-layouts');
@@ -19,21 +19,21 @@ const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
+
 //test
 const cors = require('cors');
 
-app.use(cors({
-    origin: 'http://16.171.138.189:8000',  // replace with your application's origin
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  }));
-  
+//use cors to allow cross origin resource sharing
+
+app.use(cors({ origin: 'http://localhost:3001', credentials: true }));
+
+
 
 //setup the chat server to be used with socket.io
 const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 
-const chatServerPort = 5000;
+const chatServerPort = 3001;
 chatServer.listen(chatServerPort);
 console.log(`Chat server is listening on port ${chatServerPort}`);
 const path = require('path');
@@ -76,7 +76,6 @@ app.set('views', './views');
 
 app.use(session({
     name: 'codeial',
-    //TODO change the secret before deployment in production mode
     secret: env.session_cookie_key,
     saveUninitialized: false,
     resave: false,

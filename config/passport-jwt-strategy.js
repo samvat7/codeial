@@ -4,7 +4,7 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 
 const User = require('../models/user');
 
-const env = require('./environment')
+const env = require('./environment');
 
 
 let opts = {
