@@ -25,7 +25,11 @@ const cors = require('cors');
 
 //use cors to allow cross origin resource sharing
 
-app.use(cors({ origin: 'http://localhost:3001', credentials: true }));
+app.use(cors());
+
+// use json parser
+
+app.use(express.json());
 
 
 

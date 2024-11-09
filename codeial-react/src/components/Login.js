@@ -12,15 +12,19 @@ export default function Login() {
 
     const handleLoginBtnClick = () => {
 
-        console.log("Username/Password: ", username, ", ", password);
         
-        axios.post('http://localhost:8000/users/create', {
-            username: username,
+        axios.post('http://localhost:3001/api/v1/users/create-session', {
+            email: username,
             password: password
         }).then((response) => {
-            console.log(response);
+
+            //set response.data.token in local storage
+
+            localStorage.setItem('token', response.data.data.token);
+            window.location.href = '/'; // Redirect to home page
+            
         }).catch((error) => {
-            console.log(error);
+            console.error("Error while logging in: ", error);
         });
     }
 
