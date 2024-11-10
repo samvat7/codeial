@@ -5,6 +5,8 @@ const passport = require('passport');
 
 router.get('/', postsApi.index);
 
+router.post('/', passport.authenticate('jwt',{session:false}),postsApi.create);
+
 router.delete('/:id', passport.authenticate('jwt',{session:false}),postsApi.destroy);
 
 module.exports = router;
