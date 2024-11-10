@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import DeleteButton from './DeleteButton';
 
 function Post({ post, key, onDelete}) {
   // Check if user exists, and use optional chaining to safely access properties
@@ -44,7 +45,7 @@ function Post({ post, key, onDelete}) {
 
       {/* delete button */}
 
-      <button onClick={handleDeleteBtnClick}>Delete</button>
+      <DeleteButton></DeleteButton>
     </div>
   );
 }

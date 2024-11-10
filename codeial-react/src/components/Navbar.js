@@ -59,7 +59,7 @@ export default function Navbar({ user }) {
           <div className="user-details d-flex flex-row">
             {user ? (
               <img
-                src={`http://localhost:8000${user.avatar}`}
+                src={`http://localhost:3001${user.avatar}`}
                 alt="user-avatar"
                 className="navbar-avatar"
               />
