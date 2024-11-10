@@ -2,34 +2,27 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 
-
 export default function Login() {
+  const [username, setUsername] = useState("");
 
-    const [username, setUsername] = useState('');
+  const [password, setPassword] = useState("");
 
-    const [password, setPassword] = useState('');
+  const handleLoginBtnClick = () => {
+    axios
+      .post("http://localhost:3001/api/v1/users/create-session", {
+        email: username,
+        password: password,
+      })
+      .then((response) => {
+        //set response.data.token in local storage
 
-
-    const handleLoginBtnClick = () => {
-
-        
-        axios.post('http://localhost:3001/api/v1/users/create-session', {
-            email: username,
-            password: password
-        }).then((response) => {
-
-            //set response.data.token in local storage
-
-            localStorage.setItem('token', response.data.data.token);
-            window.location.href = '/'; // Redirect to home page
-            
-        }).catch((error) => {
-            console.error("Error while logging in: ", error);
-        });
-    }
-
-
-
+        localStorage.setItem("token", response.data.data.token);
+        window.location.href = "/"; // Redirect to home page
+      })
+      .catch((error) => {
+        console.error("Error while logging in: ", error);
+      });
+  };
 
   return (
     <div>
@@ -69,6 +62,11 @@ export default function Login() {
             aria-describedby="basic-addon1"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleLoginBtnClick();
+              }
+            }}
           />
         </div>
       </div>
@@ -76,7 +74,11 @@ export default function Login() {
       {/* create container div class with flex and space between */}
 
       <div className="container d-flex justify-content-around">
-        <button type="button" className="btn btn-primary" onClick={handleLoginBtnClick} >
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={handleLoginBtnClick}
+        >
           Login
         </button>
         <a href="/register" className="btn btn-primary">

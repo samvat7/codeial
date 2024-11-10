@@ -7,9 +7,10 @@ function Post({ post, key, onDelete}) {
   const content = post?.content ?? 'No content available';
   const userName = post?.user?.name ?? 'Unknown';
   const avatar = post?.user?.avatar ?? '/default-avatar.png'; // Provide a default or placeholder avatar if none is available
+  const user = JSON.parse(localStorage.getItem("user"));
 
   // Assuming the server is running locally, adjust as necessary for production
-  const imgSrc = `http://localhost:8000${avatar}`;
+  const imgSrc = `http://localhost:3001${avatar}`;
 
   const token = localStorage.getItem("token");
 
@@ -26,7 +27,7 @@ function Post({ post, key, onDelete}) {
     .catch((error) => {
       console.error("Error while deleting post: ", error);
     });
-  }
+  };
 
   return (
     <div className="PostContainer">
@@ -45,7 +46,7 @@ function Post({ post, key, onDelete}) {
 
       {/* delete button */}
 
-      <DeleteButton></DeleteButton>
+      {user?.name === userName && <DeleteButton onClick={handleDeleteBtnClick} />}
     </div>
   );
 }

@@ -27,7 +27,9 @@ module.exports.createSession = async function (req, res) {
     console.log("Email: ", req.body.email);
     console.log("Password : ", req.body.password);
 
-    let user = await User.findOne({ email: req.body.email });
+    let email = req.body.email.split(' ')[0]; 
+
+    let user = await User.findOne({ email: email });
 
     if (!user || user.password != req.body.password) {
       return res.json(422, {

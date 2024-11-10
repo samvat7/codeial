@@ -12,7 +12,7 @@ export default function HomePage() {
     const token = localStorage.getItem("token");
     
     if (token) {
-      fetch("http://localhost:8000/api/v1/user", {
+      fetch("http://localhost:3001/api/v1/user", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -20,7 +20,7 @@ export default function HomePage() {
       })
         .then((response) => response.json())
         .then((data) => {
-          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("user", JSON.stringify(data.data.user));
           setUser(data.data.user);
         })
         .catch((error) => {
